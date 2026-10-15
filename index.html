@@ -82,10 +82,10 @@ footer{padding:35px 0;background:#fff;border-top:1px solid var(--line)}.foot{dis
 
 <section id="technology" class="model-section">
  <div class="wrap">
-  <div class="section-head reveal"><div class="kicker">Explore the engineering</div><h2>From concept to<br><span class="gradient">interactive 3D.</span></h2><p>The 3D viewer below displays a conceptual model created in-browser. Replace it with your own GLB/GLTF CAD export when you provide the final model file.</p></div>
+  <div class="section-head reveal"><div class="kicker">Explore the engineering</div><h2>From concept to<br><span class="gradient">interactive 3D.</span></h2><p>The 3D viewer below loads the SWACHHSHIELD model exported from Blender. Drag to rotate the model and scroll to zoom.</p></div>
   <div class="model-grid">
-   <article class="model-card reveal"><h3>Interactive concept viewer</h3><p>Drag to rotate · scroll to zoom. This is a visual placeholder, not a dimensionally accurate CAD model.</p>
-    <div class="viewer"><div id="three-view"></div><div class="viewer-fallback" id="viewer-fallback">Loading interactive 3D concept…</div><div class="viewer-note"><span>3D CONCEPT PREVIEW</span><span>DRAG · ZOOM</span></div></div>
+   <article class="model-card reveal"><h3>Interactive concept viewer</h3><p>Explore the actual Blender model. Drag to rotate · scroll to zoom.</p>
+    <div class="viewer"><div id="three-view"></div><div class="viewer-fallback" id="viewer-fallback">Loading interactive 3D concept…</div><div class="viewer-note"><span>SWACHHSHIELD 3D MODEL</span><span>DRAG · ZOOM</span></div></div>
    </article>
    <article class="model-card reveal"><h3>Designed to be developed</h3><p>The product concept described in the review document includes these proposed subsystems:</p>
     <div style="display:grid;gap:11px;margin-top:22px">
@@ -139,37 +139,120 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-const holder=document.getElementById('three-view'), fallback=document.getElementById('viewer-fallback');
-try{
- const scene=new THREE.Scene(); scene.background=new THREE.Color('#e8eef5');
- const camera=new THREE.PerspectiveCamera(38,holder.clientWidth/holder.clientHeight,.1,100);camera.position.set(4.8,3.5,6.5);
- const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(holder.clientWidth,holder.clientHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;holder.appendChild(renderer.domElement);
- scene.add(new THREE.HemisphereLight(0xffffff,0x8191a8,2.1));
- const key=new THREE.DirectionalLight(0xffffff,3);key.position.set(4,7,5);key.castShadow=true;scene.add(key);
- const fill=new THREE.PointLight(0xd9e7ff,35);fill.position.set(-4,2,-2);scene.add(fill);
- const metal=new THREE.MeshStandardMaterial({color:0x9ba8b6,metalness:.78,roughness:.25});
- const dark=new THREE.MeshStandardMaterial({color:0x172333,metalness:.35,roughness:.4});
- const blue=new THREE.MeshStandardMaterial({color:0x284f7c,metalness:.45,roughness:.27});
- const floor=new THREE.Mesh(new THREE.CylinderGeometry(2.15,2.15,.18,80),metal);floor.position.y=.12;floor.receiveShadow=true;scene.add(floor);
- const inner=new THREE.Mesh(new THREE.CylinderGeometry(1.45,1.55,.06,64),dark);inner.position.y=.23;scene.add(inner);
- const grateMat=new THREE.MeshStandardMaterial({color:0x687888,metalness:.7,roughness:.38});
- for(let i=-4;i<=4;i++){const bar=new THREE.Mesh(new THREE.BoxGeometry(2.1,.035,.07),grateMat);bar.position.set(0,.28,i*.22);bar.rotation.y=.08;scene.add(bar)}
- // Transparent dome approximation
- const domeMat=new THREE.MeshPhysicalMaterial({color:0xc9e5f5,transparent:true,opacity:.16,roughness:.08,metalness:.05,transmission:.35,thickness:.2,side:THREE.DoubleSide,depthWrite:false});
- const dome=new THREE.Mesh(new THREE.SphereGeometry(2,64,32,0,Math.PI*2,0,Math.PI/2),domeMat);dome.scale.y=.85;dome.position.y=.25;scene.add(dome);
- const rim=new THREE.Mesh(new THREE.TorusGeometry(2,.09,12,80),metal);rim.rotation.x=Math.PI/2;rim.position.y=.25;scene.add(rim);
- function rod(a,b,r,mat){const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b),delta=end.clone().sub(start);const mesh=new THREE.Mesh(new THREE.CylinderGeometry(r,r,delta.length(),16),mat);mesh.position.copy(start).add(end).multiplyScalar(.5);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());mesh.castShadow=true;scene.add(mesh);const joint=new THREE.Mesh(new THREE.SphereGeometry(r*1.55,20,16),metal);joint.position.copy(start);scene.add(joint);return mesh}
- rod([-.2,.38,0],[-.55,1.1,0],.095,metal);rod([-.55,1.1,0],[-.1,1.75,0],.09,metal);rod([-.1,1.75,0],[.25,2.05,0],.08,metal);
- const brushHead=new THREE.Mesh(new THREE.CylinderGeometry(.42,.34,.17,40),blue);brushHead.position.set(.25,1.98,0);brushHead.castShadow=true;scene.add(brushHead);
- const bristles=new THREE.Mesh(new THREE.CylinderGeometry(.31,.4,.12,40),new THREE.MeshStandardMaterial({color:0x26313d,roughness:.9}));bristles.position.set(.25,1.84,0);scene.add(bristles);
- for(let i=0;i<24;i++){const a=i/24*Math.PI*2;const br=new THREE.Mesh(new THREE.CylinderGeometry(.012,.018,.16,5),dark);br.position.set(.25+Math.cos(a)*.33,1.75,Math.sin(a)*.33);br.rotation.z=Math.cos(a)*.25;br.rotation.x=Math.sin(a)*.25;scene.add(br)}
- const hose=new THREE.Mesh(new THREE.TorusGeometry(.42,.065,12,50,Math.PI*1.35),dark);hose.position.set(.4,2.6,-.05);hose.rotation.z=Math.PI*.9;scene.add(hose);
- const pump=new THREE.Mesh(new THREE.SphereGeometry(.32,28,20),dark);pump.scale.set(1.15,.72,.8);pump.position.set(.85,2.55,-.12);scene.add(pump);
- const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(0,1.1,0);controls.minDistance=4;controls.maxDistance=11;controls.maxPolarAngle=Math.PI*.49;
- const resize=()=>{const w=holder.clientWidth,h=holder.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h)};new ResizeObserver(resize).observe(holder);
- fallback.style.display='none';
- function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}animate();
-}catch(e){fallback.textContent='Interactive 3D preview could not load in this browser. The product photos and page content are still available.';console.error(e)}
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const holder = document.getElementById('three-view');
+const fallback = document.getElementById('viewer-fallback');
+
+try {
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color('#e8eef5');
+
+  const camera = new THREE.PerspectiveCamera(
+    38,
+    holder.clientWidth / Math.max(holder.clientHeight, 1),
+    0.01,
+    10000
+  );
+  camera.position.set(4, 3, 5);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setSize(holder.clientWidth, holder.clientHeight);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
+  holder.appendChild(renderer.domElement);
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x8191a8, 2.2));
+
+  const keyLight = new THREE.DirectionalLight(0xffffff, 3);
+  keyLight.position.set(5, 8, 6);
+  scene.add(keyLight);
+
+  const fillLight = new THREE.DirectionalLight(0xd9e7ff, 1.5);
+  fillLight.position.set(-5, 3, -4);
+  scene.add(fillLight);
+
+  const rimLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  rimLight.position.set(0, 5, -6);
+  scene.add(rimLight);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.06;
+  controls.enablePan = true;
+
+  const loader = new GLTFLoader();
+  loader.load(
+    'assets/SWACHHSHEILD.glb',
+    (gltf) => {
+      const model = gltf.scene;
+      scene.add(model);
+
+      model.traverse((object) => {
+        if (object.isMesh) {
+          object.castShadow = true;
+          object.receiveShadow = true;
+          if (object.material) {
+            const materials = Array.isArray(object.material) ? object.material : [object.material];
+            materials.forEach((material) => {
+              if (material.map) material.map.colorSpace = THREE.SRGBColorSpace;
+              material.needsUpdate = true;
+            });
+          }
+        }
+      });
+
+      // Center the model and automatically frame it in the viewer.
+      const bounds = new THREE.Box3().setFromObject(model);
+      const center = bounds.getCenter(new THREE.Vector3());
+      const size = bounds.getSize(new THREE.Vector3());
+      model.position.sub(center);
+
+      const maxDimension = Math.max(size.x, size.y, size.z) || 1;
+      const fitDistance = (maxDimension / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)))) * 1.35;
+
+      camera.near = Math.max(maxDimension / 1000, 0.001);
+      camera.far = Math.max(maxDimension * 100, 100);
+      camera.position.set(fitDistance * 0.8, fitDistance * 0.55, fitDistance);
+      camera.updateProjectionMatrix();
+
+      controls.target.set(0, 0, 0);
+      controls.minDistance = maxDimension * 0.35;
+      controls.maxDistance = maxDimension * 8;
+      controls.update();
+
+      fallback.style.display = 'none';
+    },
+    undefined,
+    (error) => {
+      console.error('Could not load SWACHHSHIELD GLB model:', error);
+      fallback.textContent = 'The 3D model could not load. Check that assets/SWACHHSHEILD.glb is uploaded to GitHub with the same spelling and capital letters.';
+    }
+  );
+
+  const resize = () => {
+    const width = holder.clientWidth;
+    const height = holder.clientHeight;
+    if (!width || !height) return;
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+  };
+  window.addEventListener('resize', resize);
+  if ('ResizeObserver' in window) new ResizeObserver(resize).observe(holder);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
+} catch (error) {
+  fallback.textContent = 'Interactive 3D preview could not load in this browser. The product photos and page content are still available.';
+  console.error(error);
+}
 </script>
 </body>
 </html>
