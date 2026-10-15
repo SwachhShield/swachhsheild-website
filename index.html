@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f8fa">
+<meta name="description" content="SwachhSheild — an enclosed, contactless sanitation concept designed for Indian-style squat toilets.">
+<title>SwachhSheild — Rethinking Toilet Hygiene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}
+</script>
+<style>
+:root{--ink:#101827;--muted:#687385;--blue:#173e78;--pink:#dc6c8a;--line:#e5e8ed;--paper:#f7f8fa;--white:#fff;--radius:24px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(1180px,calc(100% - 44px));margin:auto}
+header{height:78px;display:flex;align-items:center;position:sticky;top:0;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(20,35,55,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-weight:800;letter-spacing:-.06em;font-size:23px}.brand img{width:46px;height:46px;object-fit:contain;border-radius:50%}.brand span{background:linear-gradient(100deg,#052b55,#df6b8b);background-clip:text;color:transparent}.navlinks{display:flex;align-items:center;gap:30px;font-size:13px;color:#3e4a5c}.navlinks a:hover{color:#d15e80}.nav-cta,.btn{border:0;border-radius:999px;padding:13px 20px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:9px;cursor:pointer;transition:transform .25s,box-shadow .25s}.nav-cta,.btn-dark{background:#101827;color:white}.btn-light{background:white;color:#111b2c;border:1px solid #e5e8ed}.btn:hover,.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px #10213b20}.menu{display:none;background:none;border:0;font-size:26px}
+.hero{min-height:690px;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:24px;padding:72px 0 65px;overflow:hidden}.eyebrow{display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.16em;font-size:10px;font-weight:800;color:#3f5f8a}.dot{width:7px;height:7px;border-radius:50%;background:#e16f8e;box-shadow:0 0 0 5px #e16f8e18}.hero h1{font:800 clamp(48px,6vw,82px)/.99 Manrope,sans-serif;letter-spacing:-.075em;margin:23px 0 24px;max-width:610px}.gradient{background:linear-gradient(100deg,#0a315e 10%,#445b8d 52%,#d96e8e);color:transparent;background-clip:text}.hero p{font-size:17px;line-height:1.8;color:#667184;max-width:520px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.micro{font-size:11px;color:#8490a0;margin-top:25px}.hero-art{position:relative;min-height:540px;display:grid;place-items:center}.hero-orb{position:absolute;width:min(42vw,500px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff 0,#e8eef6 44%,#d8e1ef 72%,#cbd7e6 100%);box-shadow:inset 0 0 50px #fff,0 35px 90px #263b5a20}.hero-art img{width:112%;max-width:700px;position:relative;z-index:2;mix-blend-mode:multiply;filter:drop-shadow(0 22px 20px #17263b25);animation:float 6s ease-in-out infinite;border-radius:22px;mask-image:linear-gradient(#000 83%,transparent 100%)}.orbit{position:absolute;width:82%;height:34%;border:1px solid #8fa6c580;border-radius:50%;transform:rotate(-24deg)}.orbit.two{width:94%;height:44%;transform:rotate(35deg);border-color:#df7b9780}.float-tag{position:absolute;z-index:3;background:#ffffffd9;backdrop-filter:blur(12px);border:1px solid #ffffff;padding:13px 16px;border-radius:16px;box-shadow:0 14px 35px #152c4914;font-size:11px;color:#647185}.float-tag strong{display:block;font-size:13px;color:#15253c;margin-bottom:4px}.tag-a{top:13%;right:1%}.tag-b{bottom:15%;left:0}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-.4deg)}50%{transform:translateY(-13px) rotate(.4deg)}}.trust{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.trust-in{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:23px 0;color:#7a8595;font-size:11px}.trust strong{font-size:12px;color:#28364b}.trust-pill{border:1px solid #e4e8ef;padding:9px 13px;border-radius:999px;white-space:nowrap}
+section{padding:105px 0}.section-head{max-width:720px;margin-bottom:42px}.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.17em;color:#cf6482;font-weight:800}.section-head h2{font:800 clamp(34px,4vw,54px)/1.08 Manrope,sans-serif;letter-spacing:-.06em;margin:14px 0}.section-head p{color:var(--muted);line-height:1.8;font-size:15px;max-width:660px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{background:#fff;border:1px solid #e8ebf0;border-radius:22px;padding:27px;min-height:235px;transition:transform .3s,box-shadow .3s}.feature:hover{transform:translateY(-5px);box-shadow:0 20px 50px #1329470d}.feature-icon{width:44px;height:44px;display:grid;place-items:center;background:#edf2f9;border-radius:14px;color:#214d82;font-size:21px;margin-bottom:22px}.feature h3{font:700 18px Manrope,sans-serif;letter-spacing:-.03em;margin:0 0 10px}.feature p{font-size:13px;line-height:1.75;color:#758092;margin:0}
+.product-section{background:#101a2a;color:#fff;overflow:hidden;position:relative}.product-section:before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:#244b7c35;filter:blur(90px);right:-120px;top:-80px}.product-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:45px;align-items:center;position:relative}.product-section .section-head p{color:#aab5c5}.product-section .kicker{color:#f08aa4}.specs{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:32px 0}.spec{border-top:1px solid #ffffff27;padding-top:15px}.spec b{display:block;font:700 24px Manrope,sans-serif;margin-bottom:5px}.spec span{color:#9daabd;font-size:11px}.product-photo{background:#f1f3f5;border-radius:28px;overflow:hidden;position:relative;min-height:350px;display:grid;place-items:center}.product-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .7s}.product-photo:hover img{transform:scale(1.05)}.photo-label{position:absolute;bottom:16px;left:16px;background:#ffffffdc;color:#18253a;padding:12px 15px;border-radius:13px;font-size:11px;backdrop-filter:blur(12px)}
+.model-section{background:#edf1f6}.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.model-card{background:#fff;border:1px solid #e0e6ee;border-radius:24px;padding:24px;min-height:390px;overflow:hidden}.model-card h3{font:700 20px Manrope,sans-serif;letter-spacing:-.04em;margin:0 0 8px}.model-card p{font-size:13px;color:#748092;line-height:1.7}.viewer{height:280px;position:relative;border-radius:16px;overflow:hidden;background:radial-gradient(circle at 50% 45%,#fff,#dfe7f0)}#three-view{position:absolute;inset:0}.viewer-note{position:absolute;bottom:10px;left:12px;right:12px;display:flex;justify-content:space-between;font-size:10px;color:#64748b;pointer-events:none}.viewer-fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:#66758b;font-size:12px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;counter-reset:steps}.step{border-top:1px solid #dce2ea;padding:20px 8px 0 0}.step:before{counter-increment:steps;content:"0" counter(steps);font-size:11px;font-weight:800;color:#d46a88}.step h3{font:700 16px Manrope,sans-serif;margin:18px 0 8px}.step p{font-size:12px;line-height:1.75;color:#788395}
+.team-section{background:#fff}.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.person{border:1px solid #e8ebf0;border-radius:17px;padding:19px;display:flex;align-items:center;gap:13px}.avatar{width:42px;height:42px;flex-shrink:0;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#dce8f7,#f9dce5);font-weight:800;color:#294d7b}.person b{display:block;font-size:13px}.person span{display:block;font-size:11px;color:#8791a0;margin-top:4px}
+.cta-panel{background:linear-gradient(120deg,#0c2d54,#344f7c 60%,#c66583);border-radius:28px;padding:58px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:30px;overflow:hidden;position:relative}.cta-panel:after{content:"";position:absolute;width:260px;height:260px;border:1px solid #ffffff35;border-radius:50%;right:25%;top:-130px;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff06}.cta-panel h2{font:800 clamp(30px,4vw,45px)/1.1 Manrope,sans-serif;letter-spacing:-.06em;margin:12px 0}.cta-panel p{color:#d4dce8;line-height:1.7;max-width:520px;font-size:14px}.cta-panel .btn{background:#fff;color:#14243b;position:relative;z-index:1;white-space:nowrap}
+footer{padding:35px 0;background:#fff;border-top:1px solid var(--line)}.foot{display:flex;align-items:center;justify-content:space-between;gap:20px}.foot small{font-size:11px;line-height:1.7;color:#8993a2}.footlinks{display:flex;gap:18px;font-size:11px;color:#647184}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:850px){.navlinks{display:none;position:absolute;top:77px;left:0;right:0;background:#fff;padding:22px;width:100%;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.menu{display:block}.nav-cta{display:none}.hero{grid-template-columns:1fr;padding-top:55px;gap:0}.hero-copy{position:relative;z-index:2}.hero-art{min-height:390px;margin-top:-10px}.hero-orb{width:380px}.hero-art img{width:100%}.trust-in{flex-wrap:wrap;justify-content:center}.product-layout{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr 1fr}.team-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.cta-panel{padding:38px;align-items:flex-start;flex-direction:column}.model-grid{grid-template-columns:1fr}}
+@media(max-width:540px){.wrap{width:calc(100% - 30px)}header{height:68px}.brand{font-size:20px}.brand img{width:39px;height:39px}.hero{padding-top:45px;min-height:unset}.hero h1{font-size:48px}.hero p{font-size:15px}.hero-art{min-height:300px}.hero-orb{width:290px}.float-tag{padding:10px;font-size:9px}.float-tag strong{font-size:11px}.tag-a{right:0}.tag-b{left:0}section{padding:72px 0}.feature-grid,.team-grid,.steps{grid-template-columns:1fr}.feature{min-height:unset}.specs{gap:16px}.product-photo{min-height:260px}.cta-panel{padding:30px 24px}.foot{align-items:flex-start;flex-direction:column}.footlinks{flex-wrap:wrap}.trust-in{gap:10px}.trust-pill{font-size:10px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#home"><img src="assets/swachhsheild-logo.png" alt="SwachhSheild logo"><span>SwachhSheild</span></a>
+  <nav class="navlinks" id="navlinks"><a href="#innovation">Innovation</a><a href="#design">Product design</a><a href="#technology">Technology</a><a href="#team">Our team</a></nav>
+  <a class="nav-cta" href="#design">Explore the concept ↗</a>
+  <button class="menu" id="menu" aria-label="Open navigation">☰</button>
+ </div>
+</header>
+<main id="home">
+<section class="hero wrap">
+ <div class="hero-copy">
+  <div class="eyebrow"><span class="dot"></span> Student innovation · Season 2026–27</div>
+  <h1>A cleaner future.<br><span class="gradient">Designed around you.</span></h1>
+  <p>Meet SwachhSheild — an enclosed, contactless sanitation concept designed for Indian-style squat toilets. Thoughtful engineering for a cleaner everyday experience.</p>
+  <div class="hero-actions"><a class="btn btn-dark" href="#design">Discover SwachhSheild <span>↗</span></a><a class="btn btn-light" href="#technology">Explore the technology ↓</a></div>
+  <div class="micro">A student startup concept from Vishwakarma Vidyalaya Marathi Secondary</div>
+ </div>
+ <div class="hero-art" aria-label="SwachhSheild product concept image">
+  <div class="hero-orb"></div><div class="orbit"></div><div class="orbit two"></div>
+  <img src="assets/swachhsheild-product.png" alt="SwachhSheild enclosed toilet-cleaning prototype">
+  <div class="float-tag tag-a"><strong>Enclosed cleaning</strong>Designed to contain splashes</div>
+  <div class="float-tag tag-b"><strong>Contactless concept</strong>Automation-led sanitation</div>
+ </div>
+</section>
+<div class="trust"><div class="wrap trust-in"><strong>ENGINEERED FOR REAL-WORLD NEEDS</strong><span class="trust-pill">Smart Bharat</span><span class="trust-pill">Community-first design</span><span class="trust-pill">3D design & prototyping</span><span class="trust-pill">Student-led innovation</span></div></div>
+
+<section id="innovation" class="wrap">
+ <div class="section-head reveal"><div class="kicker">The idea</div><h2>Hygiene deserves<br><span class="gradient">better engineering.</span></h2><p>SwachhSheild explores how enclosure design, a robotic cleaning mechanism and controlled water delivery could work together in a compact sanitation system. It is a prototype concept under development—not a certified or commercially validated product.</p></div>
+ <div class="feature-grid">
+  <article class="feature reveal"><div class="feature-icon">◎</div><h3>Enclosed by design</h3><p>A transparent dome concept with suction-cup mounting is intended to help contain splashes during the cleaning cycle.</p></article>
+  <article class="feature reveal"><div class="feature-icon">⌁</div><h3>Robotic precision</h3><p>A multi-axis servo-driven arm and brush are proposed to reach cleaning areas with a repeatable motion path.</p></article>
+  <article class="feature reveal"><div class="feature-icon">✳</div><h3>Smarter cleaning</h3><p>A downward-facing vision module is proposed for stain detection and adaptive path planning, subject to prototype testing.</p></article>
+ </div>
+</section>
+
+<section id="design" class="product-section">
+ <div class="wrap product-layout">
+  <div class="reveal">
+   <div class="section-head"><div class="kicker">Product concept</div><h2>Purpose-built.<br>Not an afterthought.</h2><p>The concept brings together a transparent enclosure, robotic brush, and detergent spray system in a removable assembly intended for Indian-style squat toilets.</p></div>
+   <div class="specs"><div class="spec"><b>360°</b><span>Enclosure-led design approach</span></div><div class="spec"><b>Multi-axis</b><span>Servo-driven brush arm concept</span></div><div class="spec"><b>Detachable</b><span>Mounting without permanent changes</span></div><div class="spec"><b>3D-first</b><span>CAD design and prototyping approach</span></div></div>
+   <a class="btn btn-light" href="#technology">See how it works ↓</a>
+  </div>
+  <div class="product-photo reveal"><img src="assets/swachhsheild-product.png" alt="Product prototype with transparent dome and articulated cleaning brush"><div class="photo-label">SWACHHSHEILD · EARLY PRODUCT CONCEPT</div></div>
+ </div>
+</section>
+
+<section id="technology" class="model-section">
+ <div class="wrap">
+  <div class="section-head reveal"><div class="kicker">Explore the engineering</div><h2>From concept to<br><span class="gradient">interactive 3D.</span></h2><p>The 3D viewer below displays a conceptual model created in-browser. Replace it with your own GLB/GLTF CAD export when you provide the final model file.</p></div>
+  <div class="model-grid">
+   <article class="model-card reveal"><h3>Interactive concept viewer</h3><p>Drag to rotate · scroll to zoom. This is a visual placeholder, not a dimensionally accurate CAD model.</p>
+    <div class="viewer"><div id="three-view"></div><div class="viewer-fallback" id="viewer-fallback">Loading interactive 3D concept…</div><div class="viewer-note"><span>3D CONCEPT PREVIEW</span><span>DRAG · ZOOM</span></div></div>
+   </article>
+   <article class="model-card reveal"><h3>Designed to be developed</h3><p>The product concept described in the review document includes these proposed subsystems:</p>
+    <div style="display:grid;gap:11px;margin-top:22px">
+     <div style="padding:14px;border:1px solid #e7ebf0;border-radius:13px;display:flex;gap:12px"><b style="color:#d16a87">01</b><div><b style="font-size:13px">Transparent enclosure</b><div style="font-size:11px;color:#7d8796;margin-top:4px">Acrylic dome and detachable suction-cup mounting</div></div></div>
+     <div style="padding:14px;border:1px solid #e7ebf0;border-radius:13px;display:flex;gap:12px"><b style="color:#d16a87">02</b><div><b style="font-size:13px">Motion & brush assembly</b><div style="font-size:11px;color:#7d8796;margin-top:4px">Multi-axis servo arm with a high-RPM brush</div></div></div>
+     <div style="padding:14px;border:1px solid #e7ebf0;border-radius:13px;display:flex;gap:12px"><b style="color:#d16a87">03</b><div><b style="font-size:13px">Water & vision system</b><div style="font-size:11px;color:#7d8796;margin-top:4px">Proposed pressure booster pump and computer vision module</div></div></div>
+    </div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="wrap">
+ <div class="section-head reveal"><div class="kicker">The workflow</div><h2>One concept. Four stages<br>of product thinking.</h2><p>A practical development path from digital design through testing. Each stage should be validated before making performance or safety claims.</p></div>
+ <div class="steps">
+  <article class="step reveal"><h3>Design in 3D</h3><p>Develop component geometry and assembly in CAD, checking clearances and mounting.</p></article>
+  <article class="step reveal"><h3>Build a prototype</h3><p>Use suitable materials and 3D-printed parts to evaluate fit and mechanism movement.</p></article>
+  <article class="step reveal"><h3>Test the system</h3><p>Evaluate splash containment, brush coverage, water delivery and electrical safety.</p></article>
+  <article class="step reveal"><h3>Improve with evidence</h3><p>Use test observations to refine the design before considering wider deployment.</p></article>
+ </div>
+</section>
+
+<section id="team" class="team-section">
+ <div class="wrap">
+  <div class="section-head reveal"><div class="kicker">The people behind it</div><h2>Student-led.<br><span class="gradient">Community-focused.</span></h2><p>Developed by a student team from Vishwakarma Vidyalaya Marathi Secondary for the Made in 3D: Seed the Future Entrepreneurs programme, Season 2026–27.</p></div>
+  <div class="team-grid">
+   <div class="person reveal"><div class="avatar">AN</div><div><b>Atharva Nikat</b><span>Chief Executive Officer</span></div></div>
+   <div class="person reveal"><div class="avatar">PK</div><div><b>Purwa Kule</b><span>Head of Finance</span></div></div>
+   <div class="person reveal"><div class="avatar">SV</div><div><b>Shlok Velhal</b><span>Head of Marketing</span></div></div>
+   <div class="person reveal"><div class="avatar">AD</div><div><b>Ayush Date</b><span>Head of Mechanical Design</span></div></div>
+   <div class="person reveal"><div class="avatar">PK</div><div><b>Pranav Kharade</b><span>Head of Manufacturing</span></div></div>
+   <div class="person reveal"><div class="avatar">GM</div><div><b>Gayatri Mane</b><span>Head of R&amp;D</span></div></div>
+  </div>
+  <p style="font-size:11px;color:#8a94a2;margin-top:20px">Teacher mentors listed in the submitted concept review: Mr. Om Dolas and Mr. Shrad Sir.</p>
+ </div>
+</section>
+
+<section class="wrap">
+ <div class="cta-panel reveal"><div><div class="kicker" style="color:#f4b4c5">Our direction</div><h2>Building a cleaner<br>everyday experience.</h2><p>SwachhSheild is a student innovation concept aligned with the Smart Bharat theme: solving community problems through thoughtful design and engineering.</p></div><a class="btn" href="#home">Back to top ↑</a></div>
+</section>
+</main>
+<footer><div class="wrap foot"><a class="brand" href="#home"><img src="assets/swachhsheild-logo.png" alt=""><span>SwachhSheild</span></a><small>Independent student project concept · Season 2026–27<br>Made in 3D: Seed the Future Entrepreneurs</small><div class="footlinks"><a href="#innovation">Innovation</a><a href="#design">Product</a><a href="#team">Team</a></div></div><div class="wrap" style="margin-top:20px"><small>Not an official Dassault Systèmes website. Programme names are used for project context. Performance, hygiene and safety outcomes have not been independently validated.</small></div></footer>
+
+<script>
+const menu=document.getElementById('menu'), nav=document.getElementById('navlinks');
+menu.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+const holder=document.getElementById('three-view'), fallback=document.getElementById('viewer-fallback');
+try{
+ const scene=new THREE.Scene(); scene.background=new THREE.Color('#e8eef5');
+ const camera=new THREE.PerspectiveCamera(38,holder.clientWidth/holder.clientHeight,.1,100);camera.position.set(4.8,3.5,6.5);
+ const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(holder.clientWidth,holder.clientHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;holder.appendChild(renderer.domElement);
+ scene.add(new THREE.HemisphereLight(0xffffff,0x8191a8,2.1));
+ const key=new THREE.DirectionalLight(0xffffff,3);key.position.set(4,7,5);key.castShadow=true;scene.add(key);
+ const fill=new THREE.PointLight(0xd9e7ff,35);fill.position.set(-4,2,-2);scene.add(fill);
+ const metal=new THREE.MeshStandardMaterial({color:0x9ba8b6,metalness:.78,roughness:.25});
+ const dark=new THREE.MeshStandardMaterial({color:0x172333,metalness:.35,roughness:.4});
+ const blue=new THREE.MeshStandardMaterial({color:0x284f7c,metalness:.45,roughness:.27});
+ const floor=new THREE.Mesh(new THREE.CylinderGeometry(2.15,2.15,.18,80),metal);floor.position.y=.12;floor.receiveShadow=true;scene.add(floor);
+ const inner=new THREE.Mesh(new THREE.CylinderGeometry(1.45,1.55,.06,64),dark);inner.position.y=.23;scene.add(inner);
+ const grateMat=new THREE.MeshStandardMaterial({color:0x687888,metalness:.7,roughness:.38});
+ for(let i=-4;i<=4;i++){const bar=new THREE.Mesh(new THREE.BoxGeometry(2.1,.035,.07),grateMat);bar.position.set(0,.28,i*.22);bar.rotation.y=.08;scene.add(bar)}
+ // Transparent dome approximation
+ const domeMat=new THREE.MeshPhysicalMaterial({color:0xc9e5f5,transparent:true,opacity:.16,roughness:.08,metalness:.05,transmission:.35,thickness:.2,side:THREE.DoubleSide,depthWrite:false});
+ const dome=new THREE.Mesh(new THREE.SphereGeometry(2,64,32,0,Math.PI*2,0,Math.PI/2),domeMat);dome.scale.y=.85;dome.position.y=.25;scene.add(dome);
+ const rim=new THREE.Mesh(new THREE.TorusGeometry(2,.09,12,80),metal);rim.rotation.x=Math.PI/2;rim.position.y=.25;scene.add(rim);
+ function rod(a,b,r,mat){const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b),delta=end.clone().sub(start);const mesh=new THREE.Mesh(new THREE.CylinderGeometry(r,r,delta.length(),16),mat);mesh.position.copy(start).add(end).multiplyScalar(.5);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());mesh.castShadow=true;scene.add(mesh);const joint=new THREE.Mesh(new THREE.SphereGeometry(r*1.55,20,16),metal);joint.position.copy(start);scene.add(joint);return mesh}
+ rod([-.2,.38,0],[-.55,1.1,0],.095,metal);rod([-.55,1.1,0],[-.1,1.75,0],.09,metal);rod([-.1,1.75,0],[.25,2.05,0],.08,metal);
+ const brushHead=new THREE.Mesh(new THREE.CylinderGeometry(.42,.34,.17,40),blue);brushHead.position.set(.25,1.98,0);brushHead.castShadow=true;scene.add(brushHead);
+ const bristles=new THREE.Mesh(new THREE.CylinderGeometry(.31,.4,.12,40),new THREE.MeshStandardMaterial({color:0x26313d,roughness:.9}));bristles.position.set(.25,1.84,0);scene.add(bristles);
+ for(let i=0;i<24;i++){const a=i/24*Math.PI*2;const br=new THREE.Mesh(new THREE.CylinderGeometry(.012,.018,.16,5),dark);br.position.set(.25+Math.cos(a)*.33,1.75,Math.sin(a)*.33);br.rotation.z=Math.cos(a)*.25;br.rotation.x=Math.sin(a)*.25;scene.add(br)}
+ const hose=new THREE.Mesh(new THREE.TorusGeometry(.42,.065,12,50,Math.PI*1.35),dark);hose.position.set(.4,2.6,-.05);hose.rotation.z=Math.PI*.9;scene.add(hose);
+ const pump=new THREE.Mesh(new THREE.SphereGeometry(.32,28,20),dark);pump.scale.set(1.15,.72,.8);pump.position.set(.85,2.55,-.12);scene.add(pump);
+ const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(0,1.1,0);controls.minDistance=4;controls.maxDistance=11;controls.maxPolarAngle=Math.PI*.49;
+ const resize=()=>{const w=holder.clientWidth,h=holder.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h)};new ResizeObserver(resize).observe(holder);
+ fallback.style.display='none';
+ function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}animate();
+}catch(e){fallback.textContent='Interactive 3D preview could not load in this browser. The product photos and page content are still available.';console.error(e)}
+</script>
+</body>
+</html>
