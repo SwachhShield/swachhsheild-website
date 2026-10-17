@@ -11,7 +11,7 @@ SwachhShield is an innovative student project focused on developing a smart toil
 
 Explore our project here:
 
-**[Visit SwachhShield Website](https://swachhshield.github.io/swachhsheild-website/)**
+**[Visit SwachhShield Website](https://swachhshield.github.io/swachhshield-website/)**
 
 ---
 
