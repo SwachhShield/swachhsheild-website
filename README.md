@@ -28,4 +28,4 @@ Official SwachhShield Student Project Website.
 
 ## Live Website
 
-Visit our website: [SwachhShield Website](https://YOUR-USERNAME.github.io/sw achhshield-website/)
+Visit our website: [SwachhShield Website](https://swachhshield.github.io/swachhsheild-website/#innovation achhshield-website/)
